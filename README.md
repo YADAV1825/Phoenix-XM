@@ -214,7 +214,29 @@ The architecture is documented as a modular manual in the `docs/` directory:
 
 ## Benchmarks
 
-The `run_benchmarks.sh` script executes a series of tests to compare Phoenix-XM against `tiny-gpu`.
+The `run_benchmarks.sh` script executes a series of tests to compare Phoenix-XM against [tiny-gpu](https://github.com/adam-maj/tiny-gpu).
+
+### Workload Cycle Counts
+
+| Metric / Workload | tiny-gpu | Phoenix-XM | Notes |
+| :--- | :--- | :--- | :--- |
+| **VecAdd (Unrolled)** | 178 | 174 | 8-element vector addition, no branches |
+| **MatMul (Unrolled)** | 436 | 174 | 2×2 matmul, k-loop fully unrolled (both GPUs) |
+| **MatMul (Looped)** | 491 | 870 | 2×2 matmul, dynamic loop with branches (both GPUs) |
+
+*Note: Phoenix-XM incurs higher overhead on branch-intensive workloads due to its deeper pipeline and current branch handling implementation.*
+
+### Architectural Metrics
+
+| Metric | tiny-gpu | Phoenix-XM |
+| :--- | :--- | :--- |
+| **Scheduler Stalls** | N/A (Support not available on this machine) | 82.8% |
+| **LSU Utilization** | N/A (Support not available on this machine) | 0.0% |
+| **Warp Scheduler** | N/A (Support not available on this machine) | Round-robin, 8 warps |
+| **Data Width** | 8-bit | 32-bit |
+| **Instruction Width** | 16-bit | 32-bit (RISC-V) |
+| **Thread Parallelism** | Per-core SISD | SIMT, 4 lanes/warp |
+| **Branch Support** | CMP+BRnzp | BEQ/BNE/BLT/BGE/BLTU/BGEU |
 
 ### Understanding the MatMul Variants
 There are three Matrix Multiplication variants because `tiny-gpu` and Phoenix-XM originally used fundamentally different assembly approaches. To achieve an apples-to-apples comparison, we run both approaches on both architectures:
