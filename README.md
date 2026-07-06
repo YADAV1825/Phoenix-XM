@@ -4,6 +4,19 @@ Phoenix-XM is an open-source educational and experimental GPU architecture built
 
 It is designed to be a modular, configurable, and thoroughly documented foundation for exploring modern GPU concepts, focusing on learning and research rather than competing directly with commercial accelerators.
 
+---
+
+### 👨‍💻 Author Information
+**Rohit Yadav** B.Tech 3rd Year  
+Dr. B.R. Ambedkar National Institute of Technology (NIT) Jalandhar, India  
+**E-mail:** [yrohit1825@gmail.com](mailto:yrohit1825@gmail.com)  
+**LinkedIn:** [Rohit Yadav](https://www.linkedin.com/in/rohit-yadav-25535b256/)  
+**GitHub:** [YADAV1825](https://github.com/YADAV1825)
+
+**Research interests include:** Large Language Models, MultiModal Pipelines, Systems Programming, AI Infrastructure, Distributed Training.
+
+---
+
 ## Goals
 
 * **Learn GPU architecture from first principles**
